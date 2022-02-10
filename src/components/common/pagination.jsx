@@ -1,5 +1,5 @@
 import React from "react";
-import generateArray from "../utils/generateArray";
+import generateArray from "../../utils/generateArray";
 import PropTypes from "prop-types";
 
 // pagination.jsx

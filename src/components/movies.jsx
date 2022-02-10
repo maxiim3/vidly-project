@@ -2,23 +2,12 @@ import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import Like from "./common/like";
-import Pagination from "./pagination";
+import Pagination from "./common/pagination";
 import Paginate from "../utils/paginate";
-import Genres from "./genres";
-import filterGender from "../utils/filterGender";
 
 class Movies extends Component {
   state = {
     allMovies: getMovies(),
-    genres: getGenres(),
-    defaultGenre: {
-      _id: "default",
-      name: "All genres",
-    },
-    currentGenre: {
-      _id: "default",
-      name: "All genres",
-    },
     pageSize: 3,
     currentPage: 1,
   };
@@ -54,13 +43,9 @@ class Movies extends Component {
       allMovies,
       pageSize,
       currentPage,
-      genres: allGenres,
-      defaultGenre,
-      currentGenre,
     } = this.state;
-    const filteredMovies = filterGender(currentGenre, defaultGenre, allMovies);
-    const { length: count } = filteredMovies;
-    const movies = Paginate(currentPage, filteredMovies, pageSize);
+    const {length : count } = allMovies
+    const movies = Paginate(currentPage, allMovies, pageSize);
 
     return (
       <main>
@@ -81,12 +66,6 @@ class Movies extends Component {
           <div className="container-fluid">
             <div className={"row"}>
               <div className="col-sm col-sm col-md-3">
-                <Genres
-                  defaultGenre={defaultGenre}
-                  genres={allGenres}
-                  onGenreChange={this.handleGenreChange}
-                  currentGenre={currentGenre}
-                />
               </div>
               <div className="col">
                 <p className={"m-2 font-weight-bold"}>
