@@ -64,6 +64,27 @@ const movies = [
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 7,
     dailyRentalRate: 3.5
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471887",
+    title: "Les Gendarmes en vacances",
+    genre: { _id: "5b21ca3eeb7f6fbccd471814", name: "Comedy" },
+    numberInStock: 3,
+    dailyRentalRate: 4.5
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd47sdfg",
+    title: "Les Visiteurs",
+    genre: { _id: "5b21ca3eeb7f6fbccd471jh87", name: "Comedy" },
+    numberInStock: 9,
+    dailyRentalRate: 4
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd47sdf7",
+    title: "Alien 3",
+    genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
+    numberInStock: 5,
+    dailyRentalRate: 3.7
   }
 ];
 
