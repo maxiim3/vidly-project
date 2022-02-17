@@ -18,7 +18,8 @@ class Movies extends Component {
    * Initialising the state after data are loaded
    */
   componentDidMount() {
-    this.setState({ movies: getMovies(), genres: getGenres() });
+    const genres = [{ name : "All Genres" }, ...getGenres()]
+    this.setState({ allMovies: getMovies(), genres });
   }
 
   handleDelete = (movie) => {
@@ -43,13 +44,16 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    console.log(genre);
+    this.setState({ selectedGenre: genre, currentPage: 1 })
   };
 
   render() {
-    const { allMovies, pageSize, currentPage } = this.state;
-    const { length: count } = allMovies;
-    const movies = Paginate(currentPage, allMovies, pageSize);
+    const { allMovies, pageSize, currentPage, genres, selectedGenre } = this.state;
+    let filtered = (selectedGenre && selectedGenre._id)
+      ? (allMovies.filter(movie => movie.genre._id === selectedGenre._id))
+      : allMovies;
+    const { length: count } = filtered;
+    const movies = Paginate(currentPage, filtered, pageSize);
 
     return (
       <main>
@@ -69,14 +73,15 @@ class Movies extends Component {
         ) : (
           <div className="container-fluid">
             <div className={"row"}>
-              {/* Left Column */}
+              {/* Left-hande side Column */}
               <div className="col-sm col-sm col-md-3">
                 <ListGroup
-                  items={this.state.genres}
+                  items = {genres}
+                  selectedItem={selectedGenre}
                   onItemSelect={this.handleGenreSelect}
                 />
               </div>
-              {/* Right Column */}
+              {/* Right-hande side Column */}
               <div className="col">
                 <p className={"m-2 font-weight-bold"}>
                   Showing {count} movies in database

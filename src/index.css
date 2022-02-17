@@ -22,3 +22,8 @@ h1 + div > p,
 h1 + div button{
   text-align: center;
 }
+
+.list-group li:hover {
+  cursor: pointer;
+}
+
